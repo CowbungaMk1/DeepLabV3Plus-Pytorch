@@ -150,7 +150,10 @@ def get_dataset(opts):
                                split='train', transform=train_transform)
         val_dst = Cityscapes(root=opts.data_root,
                              split='val', transform=val_transform)
-    return train_dst, val_dst
+        test_dst = Cityscapes(root=opts.data_root,
+                             split='test', transform=val_transform)
+
+    return train_dst, val_dst, test_dst
 
 
 def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
@@ -234,13 +237,15 @@ def main():
     if opts.dataset == 'voc' and not opts.crop_val:
         opts.val_batch_size = 1
 
-    train_dst, val_dst = get_dataset(opts)
+    train_dst, val_dst, test_dst = get_dataset(opts)
     train_loader = data.DataLoader(
         train_dst, batch_size=opts.batch_size, shuffle=True, num_workers=2,
         drop_last=True)  # drop_last=True to ignore single-image batches.
     val_loader = data.DataLoader(
         val_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
-    print("Dataset: %s, Train set: %d, Val set: %d" %
+    test_loader = data.DataLoader(
+        test_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
+    print("Dataset %s, Train set: %d, Val set: %d" %
           (opts.dataset, len(train_dst), len(val_dst)))
 
     # Set up model (all models are 'constructed at network.modeling)
@@ -320,7 +325,7 @@ def main():
         return
 
     interval_loss = 0
-    while True:  # cur_itrs < opts.total_itrs:
+    while not opts.test_only:  # cur_itrs < opts.total_itrs:
         # =====  Train  =====
         model.train()
         cur_epochs += 1

@@ -20,6 +20,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
+
+
+"""
+ python tester.py --model deeplabv3plus_mobilenet --dataset cityscapes  --gpu_id 0  --lr 0.1  --crop_size 768 --batch_size 16 --output_stride 16 --data_root ./datasets/data/cityscapes  --test_only --ckpt ckpt/best_deeplabv3plus_mobilenet_cityscapes_os16.pth 
+"""
 def get_argparser():
     parser = argparse.ArgumentParser()
 

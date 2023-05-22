@@ -245,11 +245,11 @@ def main():
         opts.val_batch_size = 1
 
     train_dst, val_dst, test_dst = get_dataset(opts)
-    # train_loader = data.DataLoader(
-    #     train_dst, batch_size=opts.batch_size, shuffle=True, num_workers=2,
-    #     drop_last=True)  # drop_last=True to ignore single-image batches.
-    # val_loader = data.DataLoader(
-    #     val_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
+    train_loader = data.DataLoader(
+        train_dst, batch_size=opts.batch_size, shuffle=True, num_workers=2,
+        drop_last=True)  # drop_last=True to ignore single-image batches.
+    val_loader = data.DataLoader(
+        val_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
     test_loader = data.DataLoader(
         test_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
     print("Dataset %s, Train set: %d, Val set: %d" %
@@ -320,14 +320,14 @@ def main():
         model.to(device)
 
     # ==========   Train Loop   ==========#
-    vis_sample_id = np.random.randint(0, len(test_loader), opts.vis_num_samples,
+    vis_sample_id = np.random.randint(0, len(val_loader), opts.vis_num_samples,
                                       np.int32) if opts.enable_vis else None  # sample idxs for visualization
     denorm = utils.Denormalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # denormalization for ori images
 
     if opts.test_only:
         model.eval()
         val_score, ret_samples = validate(
-            opts=opts, model=model, loader=test_loader, device=device, metrics=metrics, ret_samples_ids=vis_sample_id)
+            opts=opts, model=model, loader=val_loader, device=device, metrics=metrics, ret_samples_ids=vis_sample_id)
         print(metrics.to_str(val_score))
         return
 

@@ -1,0 +1,55 @@
+(venv) lucas@linuxadmin-Alienware-m15-R4:~/Documents/GitHub/DeepLabV3Plus-Pytorch$ ./test.sh 
+Device: cuda
+Dataset cityscapes, Train set: 1585, Val set: 267
+Model restored from ./checkpoints/best_deeplabv3plus_mobilenet_cityscapes_os16.pth
+67it [00:29,  2.25it/s]
+
+Overall Acc: 0.947711
+Mean Acc: 0.795812
+FreqW Acc: 0.904361
+Mean IoU: 0.713527
+
+Device: cuda
+Dataset cityscapes, Train set: 1585, Val set: 267
+Downloading: "https://download.pytorch.org/models/resnet50-19c8e357.pth" to /home/lucas/.cache/torch/hub/checkpoints/resnet50-19c8e357.pth
+100%|███████████████████████████████████████████████████████████| 97.8M/97.8M [00:31<00:00, 3.21MB/s]
+Model restored from ./checkpoints/best_deeplabv3plus_resnet50_cityscapes_os16.pth
+67it [00:41,  1.62it/s]
+
+Overall Acc: 0.953653
+Mean Acc: 0.829266
+FreqW Acc: 0.914526
+Mean IoU: 0.753896
+
+Device: cuda
+Dataset cityscapes, Train set: 1585, Val set: 267
+Downloading: "https://download.pytorch.org/models/resnet101-5d3b4d8f.pth" to /home/lucas/.cache/torch/hub/checkpoints/resnet101-5d3b4d8f.pth
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 170M/170M [01:02<00:00, 2.88MB/s]
+Model restored from ./checkpoints/best_deeplabv3plus_resnet101_cityscapes_os16.pth
+67it [00:51,  1.31it/s]
+
+Overall Acc: 0.955648
+Mean Acc: 0.843874
+FreqW Acc: 0.918145
+Mean IoU: 0.766102
+
+Device: cuda
+Dataset cityscapes, Train set: 1585, Val set: 267
+Model restored from ./checkpoints/best_deeplabv3_resnet50_cityscapes_os16.pth
+67it [00:38,  1.72it/s]
+
+Overall Acc: 0.948385
+Mean Acc: 0.822675
+FreqW Acc: 0.906058
+Mean IoU: 0.733355
+
+Device: cuda
+Dataset cityscapes, Train set: 1585, Val set: 267
+Model restored from ./checkpoints/best_deeplabv3_resnet101_cityscapes_os16.pth
+67it [00:46,  1.43it/s]
+
+Overall Acc: 0.950771
+Mean Acc: 0.829591
+FreqW Acc: 0.910186
+Mean IoU: 0.745750
+

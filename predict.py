@@ -74,7 +74,7 @@ def main():
     # Setup dataloader
     image_files = []
     if os.path.isdir(opts.input):
-        for ext in ['png', 'jpeg', 'jpg', 'JPEG']:
+        for ext in ['png', 'jpeg', 'jpg', 'JPEG','tif']:
             files = glob(os.path.join(opts.input, '**/*.%s'%(ext)), recursive=True)
             if len(files)>0:
                 image_files.extend(files)

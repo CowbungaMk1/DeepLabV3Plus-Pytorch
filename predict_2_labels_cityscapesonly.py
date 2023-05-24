@@ -20,6 +20,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from glob import glob
 
+
 def get_argparser():
     parser = argparse.ArgumentParser()
 
@@ -32,7 +33,7 @@ def get_argparser():
     # Deeplab Options
     available_models = sorted(name for name in network.modeling.__dict__ if name.islower() and \
                               not (name.startswith("__") or name.startswith('_')) and callable(
-                              network.modeling.__dict__[name])
+        network.modeling.__dict__[name])
                               )
 
     parser.add_argument("--model", type=str, default='deeplabv3plus_mobilenet',
@@ -51,12 +52,12 @@ def get_argparser():
                         help='batch size for validation (default: 4)')
     parser.add_argument("--crop_size", type=int, default=513)
 
-
     parser.add_argument("--ckpt", default=None, type=str,
                         help="resume from checkpoint")
     parser.add_argument("--gpu_id", type=str, default='0',
                         help="GPU ID")
     return parser
+
 
 def main():
     opts = get_argparser().parse_args()
@@ -74,9 +75,9 @@ def main():
     # Setup dataloader
     image_files = []
     if os.path.isdir(opts.input):
-        for ext in ['png', 'jpeg', 'jpg', 'JPEG','tif']:
-            files = glob(os.path.join(opts.input, '**/*.%s'%(ext)), recursive=True)
-            if len(files)>0:
+        for ext in ['png', 'jpeg', 'jpg', 'JPEG', 'tif']:
+            files = glob(os.path.join(opts.input, '**/*.%s' % (ext)), recursive=True)
+            if len(files) > 0:
                 image_files.extend(files)
     elif os.path.isfile(opts.input):
         image_files.append(opts.input)
@@ -100,38 +101,60 @@ def main():
         model = nn.DataParallel(model)
         model.to(device)
 
-    #denorm = utils.Denormalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # denormalization for ori images
+    # denorm = utils.Denormalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # denormalization for ori images
 
     if opts.crop_val:
         transform = T.Compose([
-                T.Resize(opts.crop_size),
-                T.CenterCrop(opts.crop_size),
-                T.ToTensor(),
-                T.Normalize(mean=[0.485, 0.456, 0.406],
-                                std=[0.229, 0.224, 0.225]),
-            ])
+            T.Resize(opts.crop_size),
+            T.CenterCrop(opts.crop_size),
+            T.ToTensor(),
+            T.Normalize(mean=[0.485, 0.456, 0.406],
+                        std=[0.229, 0.224, 0.225]),
+        ])
     else:
         transform = T.Compose([
-                T.ToTensor(),
-                T.Normalize(mean=[0.485, 0.456, 0.406],
-                                std=[0.229, 0.224, 0.225]),
-            ])
+            T.ToTensor(),
+            T.Normalize(mean=[0.485, 0.456, 0.406],
+                        std=[0.229, 0.224, 0.225]),
+        ])
     if opts.save_val_results_to is not None:
         os.makedirs(opts.save_val_results_to, exist_ok=True)
     with torch.no_grad():
         model = model.eval()
         for img_path in tqdm(image_files):
             ext = os.path.basename(img_path).split('.')[-1]
-            img_name = os.path.basename(img_path)[:-len(ext)-1]
+            img_name = os.path.basename(img_path)[:-len(ext) - 1]
+
+            # initializing substrings
+            sub1 = 'cityscapes'
+            sub2 = img_name
+
+            # getting index of substrings
+            idx1 = img_path.index(sub1)
+            idx2 = img_path.index(sub2)
+
+            res = ''
+            # getting elements in between
+            for idx in range(idx1 + len(sub1) + 1, idx2):
+                res = res + img_path[idx]
+
+
             img = Image.open(img_path).convert('RGB')
-            img = transform(img).unsqueeze(0) # To tensor of NCHW
+            img = transform(img).unsqueeze(0)  # To tensor of NCHW
             img = img.to(device)
 
-            pred = model(img).max(1)[1].cpu().numpy()[0] # HW
+            pred = model(img).max(1)[1].cpu().numpy()[0]  # HW
             colorized_preds = decode_fn(pred).astype('uint8')
             colorized_preds = Image.fromarray(colorized_preds)
             if opts.save_val_results_to:
-                colorized_preds.save(os.path.join(opts.save_val_results_to, img_name+'.png'))
+
+                save_dir=os.path.join(opts.save_val_results_to, 'cityscapes', res)
+                if not os.path.exists(save_dir):
+                    os.makedirs(save_dir)
+                else:
+                    pass
+                colorized_preds.save(os.path.join(opts.save_val_results_to, 'cityscapes', res, img_name + '.png'))
+
 
 if __name__ == '__main__':
     main()

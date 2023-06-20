@@ -124,9 +124,8 @@ def main():
         for img_path in tqdm(image_files):
             ext = os.path.basename(img_path).split('.')[-1]
             img_name = os.path.basename(img_path)[:-len(ext) - 1]
-
             # initializing substrings
-            sub1 = 'cityscapes'
+            sub1 = 'cityscapespt2'
             sub2 = img_name
 
             # getting index of substrings
@@ -148,12 +147,14 @@ def main():
             colorized_preds = Image.fromarray(colorized_preds)
             if opts.save_val_results_to:
 
-                save_dir=os.path.join(opts.save_val_results_to, 'cityscapes', res)
+                save_dir=os.path.join(opts.save_val_results_to, res.replace('leftImg8bit','gtFine'))
                 if not os.path.exists(save_dir):
                     os.makedirs(save_dir)
                 else:
-                    pass
-                colorized_preds.save(os.path.join(opts.save_val_results_to, 'cityscapes', res, img_name + '.png'))
+                    pass            
+                img_name = img_name.replace('leftImg8bit','gtFine_labelIds')
+
+                colorized_preds.save(os.path.join(save_dir, img_name + '.png'))
 
 
 if __name__ == '__main__':

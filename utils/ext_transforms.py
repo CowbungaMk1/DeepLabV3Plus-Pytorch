@@ -10,7 +10,20 @@ from PIL import Image
 
 #
 #  Extended Transforms for Semantic Segmentation
-#
+
+
+class ExtGrayscale(object):
+    def __init__(self, p=1.0):
+        self.p = p
+
+    def __call__(self, img, lbl):
+        # if random.random <= self.p:
+        # img = F.equalize(img)
+        return F.to_grayscale(img, num_output_channels=3), lbl  # F.to_grayscale(lbl, num_output_channels=1)
+
+    def __repr__(self):
+        return self.__class__.__name__ + '(p={})'.format(self.p)
+
 class ExtRandomHorizontalFlip(object):
     """Horizontally flip the given PIL Image randomly with a given probability.
     Args:

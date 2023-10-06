@@ -7,7 +7,8 @@ import argparse
 import numpy as np
 
 from torch.utils import data
-from datasets import VOCSegmentation, Cityscapes
+from datasets import VOCSegmentation
+from datasets.cityscapes import Cityscapes
 from utils import ext_transforms as et
 from metrics import StreamSegMetrics
 
@@ -104,40 +105,10 @@ def get_argparser():
 def get_dataset(opts):
     """ Dataset And Augmentation
     """
-    if opts.dataset == 'voc':
-        train_transform = et.ExtCompose([
-            # et.ExtResize(size=opts.crop_size),
-            et.ExtRandomScale((0.5, 2.0)),
-            et.ExtRandomCrop(size=(opts.crop_size, opts.crop_size), pad_if_needed=True),
-            et.ExtRandomHorizontalFlip(),
-            et.ExtToTensor(),
-            et.ExtNormalize(mean=[0.485, 0.456, 0.406],
-                            std=[0.229, 0.224, 0.225]),
-        ])
-        if opts.crop_val:
-            val_transform = et.ExtCompose([
-                et.ExtResize(opts.crop_size),
-                et.ExtCenterCrop(opts.crop_size),
-                et.ExtToTensor(),
-                et.ExtNormalize(mean=[0.485, 0.456, 0.406],
-                                std=[0.229, 0.224, 0.225]),
-            ])
-        else:
-            val_transform = et.ExtCompose([
-                et.ExtToTensor(),
-                et.ExtNormalize(mean=[0.485, 0.456, 0.406],
-                                std=[0.229, 0.224, 0.225]),
-            ])
-        train_dst = VOCSegmentation(root=opts.data_root, year=opts.year,
-                                    image_set='train', download=opts.download, transform=train_transform)
-        val_dst = VOCSegmentation(root=opts.data_root, year=opts.year,
-                                  image_set='val', download=False, transform=val_transform)
-        test_dst = Cityscapes(root=opts.data_root,
-                              split='test', download=False,transform=val_transform)
-
+    
     if opts.dataset == 'cityscapes':
         train_transform = et.ExtCompose([
-            # et.ExtResize( 512 ),
+            et.ExtResize( 512 ),
             et.ExtRandomCrop(size=(opts.crop_size, opts.crop_size)),
             et.ExtColorJitter(brightness=0.5, contrast=0.5, saturation=0.5),
             et.ExtRandomHorizontalFlip(),
@@ -147,7 +118,7 @@ def get_dataset(opts):
         ])
 
         val_transform = et.ExtCompose([
-            # et.ExtResize( 512 ),
+            et.ExtResize( 512 ),
             et.ExtToTensor(),
             et.ExtNormalize(mean=[0.485, 0.456, 0.406],
                             std=[0.229, 0.224, 0.225]),
@@ -179,11 +150,14 @@ def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
 
             images = images.to(device, dtype=torch.float32)
             labels = labels.to(device, dtype=torch.long)
-
+            if len(labels.size()) > 3:
+                labels = torch.squeeze(labels[:,:,:,1])
             outputs = model(images)
             preds = outputs.detach().max(dim=1)[1].cpu().numpy()
             targets = labels.cpu().numpy()
-
+            
+            
+     
             metrics.update(targets, preds)
             if ret_samples_ids is not None and i in ret_samples_ids:  # get vis samples
                 ret_samples.append(
@@ -251,7 +225,7 @@ def main():
     val_loader = data.DataLoader(
         val_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
     test_loader = data.DataLoader(
-        test_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
+        val_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
     print("Dataset %s, Train set: %d, Val set: %d" %
           (opts.dataset, len(train_dst), len(val_dst)))
 
@@ -329,6 +303,8 @@ def main():
         val_score, ret_samples = validate(
             opts=opts, model=model, loader=val_loader, device=device, metrics=metrics, ret_samples_ids=vis_sample_id)
         print(metrics.to_str(val_score))
+        
+        print(val_score['Class IoU'])
         return
 
     interval_loss = 0

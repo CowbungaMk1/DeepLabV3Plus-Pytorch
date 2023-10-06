@@ -1,0 +1,104 @@
+floyd@LoydVII-Alienware-Aurora-R6:~/Documents/GitHub/DeepLabV3Plus-Pytorch$ ./batchTestCompairor.sh 
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_mobilenet_cityscapes_os16.pth
+125it [01:15,  1.66it/s]
+
+Overall Acc: 0.953240
+Mean Acc: 0.804726
+FreqW Acc: 0.913935
+Mean IoU: 0.725024
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_mobilenet_cityscapes_os16_pt2.pth
+125it [01:14,  1.68it/s]
+
+Overall Acc: 0.946477
+Mean Acc: 0.744958
+FreqW Acc: 0.902570
+Mean IoU: 0.666408
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_mobilenet_cityscapes_os16_pt2synthjun5.pth
+125it [01:12,  1.72it/s]
+
+Overall Acc: 0.946327
+Mean Acc: 0.750772
+FreqW Acc: 0.901527
+Mean IoU: 0.676149
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_resnet50_cityscapes_os16.pth
+125it [01:49,  1.14it/s]
+
+Overall Acc: 0.957782
+Mean Acc: 0.835869
+FreqW Acc: 0.921804
+Mean IoU: 0.762032
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_resnet50_cityscapes_os16_pt2.pth
+125it [01:49,  1.14it/s]
+
+Overall Acc: 0.949220
+Mean Acc: 0.774655
+FreqW Acc: 0.907145
+Mean IoU: 0.695306
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_resnet50_cityscapes_os16_pt2synthjun5.pth
+125it [01:48,  1.15it/s]
+
+Overall Acc: 0.951761
+Mean Acc: 0.778523
+FreqW Acc: 0.910821
+Mean IoU: 0.708452
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_resnet101_cityscapes_os16.pth
+125it [02:10,  1.04s/it]
+
+Overall Acc: 0.959822
+Mean Acc: 0.847693
+FreqW Acc: 0.925409
+Mean IoU: 0.773069
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_resnet101_cityscapes_os16_pt1.pth
+125it [02:10,  1.05s/it]
+
+Overall Acc: 0.893714
+Mean Acc: 0.620319
+FreqW Acc: 0.831168
+Mean IoU: 0.488306
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_resnet101_cityscapes_os16_pt2.pth
+125it [02:10,  1.05s/it]
+
+Overall Acc: 0.954328
+Mean Acc: 0.805965
+FreqW Acc: 0.916090
+Mean IoU: 0.726029
+
+Device: cuda
+Dataset cityscapes, Train set: 2975, Val set: 500
+Model restored from ./checkpoints/best_deeplabv3plus_resnet101_cityscapes_os16_pt2synthjun5.pth
+125it [02:09,  1.03s/it]
+
+Overall Acc: 0.953952
+Mean Acc: 0.794763
+FreqW Acc: 0.914715
+Mean IoU: 0.722476
+
+floyd@LoydVII-Alienware-Aurora-R6:~/Documents/GitHub/DeepLabV3Plus-Pytorch$ 
+
+

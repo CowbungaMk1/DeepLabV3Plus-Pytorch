@@ -7,7 +7,8 @@ import argparse
 import numpy as np
 
 from torch.utils import data
-from datasets import VOCSegmentation, Cityscapes
+from datasets import VOCSegmentation
+from datasets.cityscapest import Cityscapes
 from utils import ext_transforms as et
 from metrics import StreamSegMetrics
 
@@ -244,7 +245,7 @@ def main():
     val_loader = data.DataLoader(
         val_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
     test_loader = data.DataLoader(
-        test_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
+        val_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
     print("Dataset %s, Train set: %d, Val set: %d" %
           (opts.dataset, len(train_dst), len(val_dst)))
 

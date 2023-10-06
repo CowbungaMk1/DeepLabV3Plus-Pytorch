@@ -1,0 +1,78 @@
+Device: cuda
+Dataset cityscapes, Train set: 1390, Val set: 233
+Model restored from ./checkpoints/best_deeplabv3plus_mobilenet_cityscapes_os16_pt2.pth
+59it [00:11,  5.20it/s]
+/home/floyd/Documents/GitHub/DeepLabV3Plus-Pytorch/metrics/stream_metrics.py:66: RuntimeWarning: invalid value encountered in divide
+  acc_cls = np.diag(hist) / hist.sum(axis=1)
+
+Overall Acc: 0.944013
+Mean Acc: 0.758044
+FreqW Acc: 0.900261
+Mean IoU: 0.622378
+
+{0: 0.9712939788892696, 1: 0.799183000568665, 2: 0.9056291956159713, 3: 0.5217464142839265, 4: 0.2911611598499136, 5: 0.4574269529625617, 6: 0.5450064174349691, 7: 0.6832037620878589, 8: 0.8928639618584463, 9: 0.550376290316591, 10: 0.9313031476115242, 11: 0.625961041608908, 12: 0.47546207251785, 13: 0.9080343736436188, 14: 0.6202034899445027, 15: 0.6960147821296494, 16: 0.0, 17: 0.28667894413750766, 18: 0.6636355125702817}
+Device: cuda
+Dataset cityscapes, Train set: 1390, Val set: 233
+Model restored from ./checkpoints/best_deeplabv3plus_mobilenet_cityscapes_os16_pt2synthjun5.pth
+59it [00:10,  5.38it/s]
+/home/floyd/Documents/GitHub/DeepLabV3Plus-Pytorch/metrics/stream_metrics.py:66: RuntimeWarning: invalid value encountered in divide
+  acc_cls = np.diag(hist) / hist.sum(axis=1)
+
+Overall Acc: 0.946516
+Mean Acc: 0.734492
+FreqW Acc: 0.902238
+Mean IoU: 0.616387
+
+{0: 0.9683072609792253, 1: 0.7752574950829315, 2: 0.9092202649696325, 3: 0.5219203341774619, 4: 0.3977850997145827, 5: 0.4485337602097648, 6: 0.506156319804897, 7: 0.6579895739763995, 8: 0.9085446368298992, 9: 0.6420973439162294, 10: 0.9410367603636262, 11: 0.61832011139245, 12: 0.4637596620627882, 13: 0.9047119612097335, 14: 0.4158814231441169, 15: 0.6901269455681696, 16: 0.0, 17: 0.27232111364544875, 18: 0.6693774051081004}
+Device: cuda
+Dataset cityscapes, Train set: 1390, Val set: 233
+Model restored from ./checkpoints/best_deeplabv3plus_resnet50_cityscapes_os16_pt2.pth
+59it [00:12,  4.69it/s]
+/home/floyd/Documents/GitHub/DeepLabV3Plus-Pytorch/metrics/stream_metrics.py:66: RuntimeWarning: invalid value encountered in divide
+  acc_cls = np.diag(hist) / hist.sum(axis=1)
+
+Overall Acc: 0.944580
+Mean Acc: 0.782479
+FreqW Acc: 0.900296
+Mean IoU: 0.643525
+
+{0: 0.9695373948441667, 1: 0.7763089798825545, 2: 0.9047527262618245, 3: 0.403170426339539, 4: 0.2976982557094048, 5: 0.4718512214859808, 6: 0.5944191304086869, 7: 0.7171935473031796, 8: 0.8962071588361624, 9: 0.5927465698925184, 10: 0.932276500350397, 11: 0.6535470344851169, 12: 0.5055820518852792, 13: 0.9178566097945525, 14: 0.6946627910329228, 15: 0.7977610302187752, 16: 0.0, 17: 0.439799947354567, 18: 0.661604020018001}
+Device: cuda
+Dataset cityscapes, Train set: 1390, Val set: 233
+Model restored from ./checkpoints/best_deeplabv3plus_resnet50_cityscapes_os16_pt2synthjun5.pth
+59it [00:12,  4.73it/s]
+/home/floyd/Documents/GitHub/DeepLabV3Plus-Pytorch/metrics/stream_metrics.py:66: RuntimeWarning: invalid value encountered in divide
+  acc_cls = np.diag(hist) / hist.sum(axis=1)
+
+Overall Acc: 0.949955
+Mean Acc: 0.761166
+FreqW Acc: 0.908256
+Mean IoU: 0.646184
+
+{0: 0.9689239452543172, 1: 0.7817783488590325, 2: 0.9174045399029815, 3: 0.5238032876309057, 4: 0.38446681712203423, 5: 0.48292771181115723, 6: 0.56700612116055, 7: 0.7062186785021618, 8: 0.9126648846610508, 9: 0.6422140126600646, 10: 0.947631302618907, 11: 0.664674822951231, 12: 0.5233968804159446, 13: 0.9146758783666233, 14: 0.47872162386786216, 15: 0.7890587119783642, 16: 0.0, 17: 0.383167313861219, 18: 0.6887643684869993}
+Device: cuda
+Dataset cityscapes, Train set: 1390, Val set: 233
+Model restored from ./checkpoints/best_deeplabv3plus_resnet101_cityscapes_os16_pt2.pth
+59it [00:14,  3.94it/s]
+/home/floyd/Documents/GitHub/DeepLabV3Plus-Pytorch/metrics/stream_metrics.py:66: RuntimeWarning: invalid value encountered in divide
+  acc_cls = np.diag(hist) / hist.sum(axis=1)
+
+Overall Acc: 0.951158
+Mean Acc: 0.803425
+FreqW Acc: 0.911378
+Mean IoU: 0.674087
+
+{0: 0.9733165823302559, 1: 0.8050376245395511, 2: 0.9164156830766562, 3: 0.644238868188502, 4: 0.3303755402091827, 5: 0.4940532750991717, 6: 0.6257980977245332, 7: 0.7158338331729197, 8: 0.9039902261429377, 9: 0.6015756385745534, 10: 0.944450747601181, 11: 0.6617183189384379, 12: 0.5337677319296669, 13: 0.9251334668548241, 14: 0.7863938276111961, 15: 0.8425153032832499, 16: 0.0, 17: 0.4265074691963799, 18: 0.6765226098639194}
+Device: cuda
+Dataset cityscapes, Train set: 1390, Val set: 233
+Model restored from ./checkpoints/best_deeplabv3plus_resnet101_cityscapes_os16_pt2synthjun5.pth
+59it [00:15,  3.93it/s]
+/home/floyd/Documents/GitHub/DeepLabV3Plus-Pytorch/metrics/stream_metrics.py:66: RuntimeWarning: invalid value encountered in divide
+  acc_cls = np.diag(hist) / hist.sum(axis=1)
+
+Overall Acc: 0.952383
+Mean Acc: 0.778697
+FreqW Acc: 0.912714
+Mean IoU: 0.661839
+
+{0: 0.9737518676211563, 1: 0.8022029223460241, 2: 0.9190219644795751, 3: 0.5755991154561385, 4: 0.3816099250005853, 5: 0.49633854643023445, 6: 0.5865945322720117, 7: 0.718570576830087, 8: 0.9119184315586638, 9: 0.6449691267943037, 10: 0.9461418466186484, 11: 0.6651787494812411, 12: 0.5375661578060064, 13: 0.9193755704730887, 14: 0.5966952674621263, 15: 0.8065292184377877, 16: 0.0, 17: 0.3985807214665878, 18: 0.6942895016194901}

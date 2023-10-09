@@ -8,7 +8,7 @@ import numpy as np
 
 from torch.utils import data
 from datasets import VOCSegmentation
-from datasets.cityscapest import Cityscapes
+from datasets.cityscapes import Cityscapes
 from utils import ext_transforms as et
 from metrics import StreamSegMetrics
 
@@ -226,7 +226,7 @@ def main():
         vis.vis_table("Options", vars(opts))
 
     os.environ['CUDA_VISIBLE_DEVICES'] = opts.gpu_id
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
     print("Device: %s" % device)
 
     # Setup random seed
